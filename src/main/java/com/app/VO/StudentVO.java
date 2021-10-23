@@ -10,13 +10,13 @@ public class StudentVO {
         @GeneratedValue(strategy = GenerationType.AUTO)
         @Column
         private long stdId;
-        @Column
+        @Column(name="name",nullable = false)
         private String stdName;
-        @Column
+        @Column(name="course",nullable = false)
         private String stdCourse;
-        @Column
+        @Column(name="fee",length = 4)
         private double stdFee;
-        @Column
+        @Column(name="email",unique = true)
         private String stdEmail;
         @Column
         private String password;

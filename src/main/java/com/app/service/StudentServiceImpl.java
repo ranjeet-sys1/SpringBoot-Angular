@@ -41,4 +41,31 @@ public class StudentServiceImpl implements StudentService {
         return student;
     }
 
+    @Override
+    public void deleteStudent(Long stdId) {
+        studentRepo.deleteById(stdId);
+    }
+
+    @Override
+    public Boolean isExit(Long stdId) {
+        return studentRepo.existsById(stdId);
+
+    }
+
+    @Override
+    public Student searchStudentByName(String stdName) {
+        StudentVO studentVO = studentRepo.searchStudentByName(stdName);
+        Student student = new Student();
+        BeanUtils.copyProperties(studentVO,student);
+        return student;
+    }
+
+    @Override
+    public Student searchStudentByEmailId(String email) {
+        StudentVO studentVO = studentRepo.searchStudentByEmailId(email);
+        Student student = new Student();
+        BeanUtils.copyProperties(studentVO,student);
+        return student;
+    }
+
 }

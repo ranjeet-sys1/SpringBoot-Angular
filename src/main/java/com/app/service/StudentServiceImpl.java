@@ -68,4 +68,20 @@ public class StudentServiceImpl implements StudentService {
         return student;
     }
 
+    @Override
+    public Student getStudent(Long id) {
+        StudentVO studentVO = studentRepo.getById(id);
+        Student student = new Student();
+        BeanUtils.copyProperties(studentVO,student);
+        return student;
+    }
+
+    @Override
+    public Student updateStudent(Student student) {
+        StudentVO studentVO =new StudentVO();
+        BeanUtils.copyProperties(student,studentVO);
+        studentRepo.save(studentVO);
+        return student;
+    }
+
 }

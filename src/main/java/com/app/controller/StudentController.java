@@ -88,5 +88,35 @@ public class StudentController {
         }
 
     }
+    @GetMapping("/getStudent/{id}")
+    public ResponseEntity getStudent(@PathVariable("id")Long id){
+        Student student =null;
+        if(studentService.isExit(id)){
+             student = studentService.getStudent(id);
+            return ResponseEntity.ok().body(student);
+        }else{
+            ErrorResponse errorResponse =new ErrorResponse();
+            errorResponse.setMessage("Student " +id+ " is not exiting with us");
+            errorResponse.setStatus(HttpStatus.NO_CONTENT.name());
+            errorResponse.setStatusCode(HttpStatus.NO_CONTENT.value());
+            errorResponse.setTimeStamp(new Date());
+            return ResponseEntity.ok(errorResponse);
+        }
+    }
+    @PutMapping("/update")
+    public ResponseEntity updateStudent(@RequestBody Student student){
+        if(studentService.isExit(student.getStdId())){
+            Student updatedStudent = studentService.updateStudent(student);
+            return ResponseEntity.ok().body(updatedStudent);
+        }else{
+            ErrorResponse errorResponse =new ErrorResponse();
+            errorResponse.setMessage("Student " +student.getStdId()+ " is not exiting with us");
+            errorResponse.setStatus(HttpStatus.NO_CONTENT.name());
+            errorResponse.setStatusCode(HttpStatus.NO_CONTENT.value());
+            errorResponse.setTimeStamp(new Date());
+            return ResponseEntity.ok(errorResponse);
+        }
+    }
+
 
 }

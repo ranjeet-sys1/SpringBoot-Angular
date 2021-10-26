@@ -12,6 +12,8 @@ public interface StudentService {
      Boolean isExit(Long stdId);
      Student searchStudentByName(String stdName);
      Student searchStudentByEmailId(String stdName);
+     Student getStudent(Long id);
+     Student updateStudent(Student student);
 
 
 }

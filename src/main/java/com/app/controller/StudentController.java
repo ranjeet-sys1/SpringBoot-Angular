@@ -24,8 +24,6 @@ public class StudentController {
     public ResponseEntity<Student> getAll(){
         List<Student> students = studentService.getAll();
         return  new ResponseEntity(students, HttpStatus.OK);
-
-
     }
     @PostMapping("/save")
     public ResponseEntity<?> saveStudent(@RequestBody Student student){

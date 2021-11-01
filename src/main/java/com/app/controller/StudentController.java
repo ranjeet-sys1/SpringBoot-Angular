@@ -101,9 +101,9 @@ public class StudentController {
             return ResponseEntity.ok(errorResponse);
         }
     }
-    @PutMapping("/update")
-    public ResponseEntity updateStudent(@RequestBody Student student){
-        if(studentService.isExit(student.getStdId())){
+    @PutMapping("/update/{id}")
+    public ResponseEntity updateStudent(@PathVariable("id") long id,@RequestBody Student student){
+        if(studentService.isExit(id)){
             Student updatedStudent = studentService.updateStudent(student);
             return ResponseEntity.ok().body(updatedStudent);
         }else{
